@@ -5,15 +5,16 @@ import styled from "styled-components";
 import { JsonData } from "./Data";
 import { ExportToExcel } from "./Xlsx";
 import { Popup } from "./Popup";
+import { ShowData } from "./ShowData";
 const fileName = "persons";
-const headers = [
-  { label: "First Name", key: "first_name" },
-  { label: "Last Name", key: "last_name" },
-  { label: "Email", key: "email" },
-];
+// const headers = [
+//   { label: "First Name", key: "first_name" },
+//   { label: "Last Name", key: "last_name" },
+//   { label: "Email", key: "email" },
+// ];
 const csvReport = {
   filename: "persons.csv",
-  header: headers,
+  // header: headers,
   data: JsonData,
 };
 
@@ -25,10 +26,7 @@ const DownloadButton = styled.button`
   padding: 5px;
   cursor: pointer;
 `;
-const DataFormat = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+
 const ButtonDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -47,26 +45,7 @@ function Download() {
       <DownloadButton onClick={togglePopup}>DOWNLOAD</DownloadButton>
       <br />
       <br />
-      <DataFormat>
-        <table border="1" style={{ alignItems: "center" }}>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          {JsonData.map((user) => (
-            <tbody>
-              <tr>
-                <td>{user.first_name}</td>
-                <td>{user.last_name}</td>
-                <td>{user.email}</td>
-              </tr>
-            </tbody>
-          ))}
-        </table>
-      </DataFormat>
+      <ShowData />
       {isOpen && (
         <Popup
           content={
